@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filme Católico</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        a:hover {
+            text-decoration: underline; 
+        }
+        .like-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .like-count {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filme da Santa Missa</h1>
+    <a href="#" id="openModal">Assistir Vídeo</a>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" style="color: white; cursor: pointer;">&times; Fechar</span>
+            
+    <!-- Incorporação do vídeo do Vimeo -->
+    <iframe src="https://player.vimeo.com/video/950479803" 
+    width="640" 
+    height="360" 
+    frameborder="0" 
+    allow="autoplay; fullscreen" 
+    allowfullscreen>
+</iframe>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
+    </div>
+
+    <button class="like-button" id="likeButton">👍 Like</button>
+    <div class="like-count" id="likeCount">Likes: 0</div>
+
+    <script>
+        const modal = document.getElementById("myModal");
+        const openModal = document.getElementById("openModal");
+        const closeModal = document.getElementById("closeModal");
+        const likeButton = document.getElementById("likeButton");
+        const likeCount = document.getElementById("likeCount");
+
+        let count = 0; // Variável para armazenar a contagem de likes
+
+        openModal.onclick = function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do link
+            modal.style.display = "block"; // Abre o modal
+            document.getElementById('myVideo').play(); // Inicia a reprodução do vídeo
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none"; // Fecha o modal
+            document.getElementById('myVideo').pause(); // Pausa o vídeo ao fechar
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none"; // Fecha o modal se clicar fora
+                document.getElementById('myVideo').pause(); // Pausa o vídeo ao fechar
+            }
+        }
+
+        likeButton.onclick = function() {
+            count++; // Incrementa o contador de likes
+            likeCount.textContent = "Likes: " + count; // Atualiza a exibição do contador
+            alert("Obrigado pelo seu like! 💖"); // Alerta de agradecimento
+        }
+    </script>
+</body>
+</html>
