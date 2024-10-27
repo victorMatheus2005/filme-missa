@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -68,7 +68,7 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span id="closeModal" style="color: white; cursor: pointer;">&times; Fechar</span>
-            <video controls>
+            <video controls id="myVideo">
                 <source src="assets/O Maior Milagre (Dublado) By Yuri Andrade(720P_-_MP4).mp4" type="video/mp4">
                 Seu navegador não suporta o elemento de vídeo.
             </video>
@@ -90,15 +90,18 @@
         openModal.onclick = function(event) {
             event.preventDefault(); // Evita o comportamento padrão do link
             modal.style.display = "block"; // Abre o modal
+            document.getElementById('myVideo').play(); // Inicia a reprodução do vídeo
         }
 
         closeModal.onclick = function() {
             modal.style.display = "none"; // Fecha o modal
+            document.getElementById('myVideo').pause(); // Pausa o vídeo ao fechar
         }
 
         window.onclick = function(event) {
             if (event.target === modal) {
                 modal.style.display = "none"; // Fecha o modal se clicar fora
+                document.getElementById('myVideo').pause(); // Pausa o vídeo ao fechar
             }
         }
 
